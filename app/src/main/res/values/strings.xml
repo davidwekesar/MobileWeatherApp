@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Mobile Weather App</string>
+    <string name="content_desc_weather_icon">Weather icon</string>
+    <string name="content_desc_weather_image">Weather image</string>
 </resources>
