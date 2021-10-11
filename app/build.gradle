@@ -66,4 +66,7 @@ dependencies {
 
     // Timber
     implementation "com.jakewharton.timber:timber:$timber_version"
+
+    // Fragment KTX
+    implementation "androidx.fragment:fragment-ktx:$fragment_ktx_version"
 }

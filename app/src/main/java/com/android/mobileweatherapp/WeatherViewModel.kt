@@ -1,17 +1,20 @@
 package com.android.mobileweatherapp
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.mobileweatherapp.data.network.CityWeather
 import com.android.mobileweatherapp.repository.WeatherRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import javax.inject.Inject
 
-class WeatherViewModel : ViewModel() {
-
-    private val weatherRepository = WeatherRepository()
+@HiltViewModel
+class WeatherViewModel @Inject constructor(
+    private val weatherRepository: WeatherRepository
+) : ViewModel() {
 
     private val _cityWeather = MutableLiveData<CityWeather>()
     val cityWeather: LiveData<CityWeather> get() = _cityWeather
@@ -25,9 +28,8 @@ class WeatherViewModel : ViewModel() {
             try {
                 val cityWeather = weatherRepository.getCurrentWeather()
                 _cityWeather.value = cityWeather
-                Log.d("WeatherViewModel", "City Weather value: $cityWeather")
             } catch (e: Exception) {
-                Log.e("WeatherViewModel", "Failure: ${e.message}")
+                Timber.e("Failure: ${e.message}")
             }
         }
     }
