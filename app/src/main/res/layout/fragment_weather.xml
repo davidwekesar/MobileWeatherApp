@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.android.mobileweatherapp.WeatherViewModel" />
     </data>
 
     <LinearLayout
@@ -22,9 +25,10 @@
                 android:id="@+id/minTemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_padding_medium"
+                android:text="@{viewModel.cityWeather.main.minTemp}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                 android:textColor="@color/white"
-                android:layout_marginStart="@dimen/default_padding_medium"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="19" />
@@ -45,6 +49,7 @@
                 android:id="@+id/currentTemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{viewModel.cityWeather.main.currentTemp}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toStartOf="@+id/maxTemp"
@@ -69,6 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/default_padding_medium"
+                android:text="@{viewModel.cityWeather.main.maxTemp}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
