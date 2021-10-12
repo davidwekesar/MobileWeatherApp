@@ -2,9 +2,17 @@ package com.android.mobileweatherapp.data.network
 
 import com.squareup.moshi.Json
 
-data class CityWeather(val weather: List<Weather>, val main: Main, val name: String)
+data class CityWeather(
+    val weather: List<Weather>,
 
-data class Main(
+    @Json(name = "main")
+    val temperatures: Temperatures,
+
+    @Json(name = "name")
+    val cityName: String
+)
+
+data class Temperatures(
     @Json(name = "temp")
     val currentTemp: Double,
 
@@ -15,4 +23,9 @@ data class Main(
     val maxTemp: Double
 )
 
-data class Weather(val id: Int, val main: String)
+data class Weather(
+    val id: Int,
+
+    @Json(name = "main")
+    val name: String
+)

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.android.mobileweatherapp.databinding.FragmentWeatherBinding
@@ -14,7 +15,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class WeatherFragment : Fragment() {
 
-    private val weatherViewModel: WeatherViewModel by viewModels()
+    private val weatherViewModel: WeatherViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

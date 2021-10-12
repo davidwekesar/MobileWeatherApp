@@ -1,5 +1,6 @@
 package com.android.mobileweatherapp.util
 
+import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import kotlin.math.floor
@@ -11,6 +12,37 @@ fun setText(text: TextView, temp: Double) {
     text.text = formattedTemp
 }
 
-fun tempToInt(temp: Double): Int {
-    return floor(temp).toInt()
+@BindingAdapter("textWeather")
+fun setWeatherName(textView: TextView, weatherId: Int) {
+    val weatherName: String = getWeatherName(weatherId)
+    textView.text = weatherName
+}
+
+fun tempToInt(temp: Double?): Int {
+    return if (temp != null) {
+        floor(temp).toInt()
+    } else {
+        0
+    }
+}
+
+fun getWeatherName(weatherId: Int?): String {
+    return if (weatherId != null) {
+        when (weatherId) {
+            in 200..531 -> {
+                "Rain"
+            }
+            in 801..804 -> {
+                "Cloudy"
+            }
+            800 -> {
+                "Sunny"
+            }
+            else -> {
+                ""
+            }
+        }
+    } else {
+        ""
+    }
 }

@@ -5,4 +5,6 @@
     <string name="min">min</string>
     <string name="current">Current</string>
     <string name="max">max</string>
+    <string name="temp_format">%1$s\u00B0</string>
+    <string name="temp_placeholder">25\u00B0</string>
 </resources>
