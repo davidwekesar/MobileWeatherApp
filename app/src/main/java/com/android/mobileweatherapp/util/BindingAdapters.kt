@@ -1,6 +1,7 @@
 package com.android.mobileweatherapp.util
 
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -29,6 +30,17 @@ fun setBackgroundColor(view: View, weatherId: Int) {
         else -> R.color.sunny
     }
     view.background = ContextCompat.getDrawable(view.rootView.context, color)
+}
+
+@BindingAdapter("android:src")
+fun setDrawable(imageView: ImageView, weatherId: Int) {
+    val drawable = when(weatherId) {
+        in 200..531 -> R.drawable.forest_rainy
+        in 801..804 -> R.drawable.forest_cloudy
+        800 -> R.drawable.forest_sunny
+        else -> R.drawable.forest_sunny
+    }
+    imageView.setImageResource(drawable)
 }
 
 fun tempToInt(temp: Double?): Int {

@@ -33,7 +33,8 @@
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/content_desc_weather_image"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/forest_sunny" />
+                    android:src="@{viewModel.cityWeather.weather[0].id}"
+                    tools:src="@drawable/forest_sunny" />
 
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar"
