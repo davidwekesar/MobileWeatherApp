@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/sunny"
+        android:background="@{viewModel.cityWeather.weather[0].id}"
         android:orientation="vertical"
         tools:background="@color/sunny">
 
@@ -102,6 +102,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/list_item_day_forecast" />
     </LinearLayout>
 </layout>

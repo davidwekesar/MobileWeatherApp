@@ -2,7 +2,9 @@ package com.android.mobileweatherapp.util
 
 import android.view.View
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import com.android.mobileweatherapp.R
 import kotlin.math.floor
 
 @BindingAdapter("android:text")
@@ -16,6 +18,17 @@ fun setText(text: TextView, temp: Double) {
 fun setWeatherName(textView: TextView, weatherId: Int) {
     val weatherName: String = getWeatherName(weatherId)
     textView.text = weatherName
+}
+
+@BindingAdapter("android:background")
+fun setBackgroundColor(view: View, weatherId: Int) {
+    val color = when(weatherId) {
+        in 200..531 -> R.color.rainy
+        in 801..804 -> R.color.cloudy
+        800 -> R.color.sunny
+        else -> R.color.sunny
+    }
+    view.background = ContextCompat.getDrawable(view.rootView.context, color)
 }
 
 fun tempToInt(temp: Double?): Int {
