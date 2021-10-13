@@ -1,4 +1,4 @@
-package com.android.mobileweatherapp
+package com.android.mobileweatherapp.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.android.mobileweatherapp.databinding.FragmentWeatherBinding
+import com.android.mobileweatherapp.viewmodels.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class WeatherFragment : Fragment() {

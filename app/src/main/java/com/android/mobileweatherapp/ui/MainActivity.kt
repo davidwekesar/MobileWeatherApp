@@ -1,9 +1,10 @@
-package com.android.mobileweatherapp
+package com.android.mobileweatherapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.android.mobileweatherapp.databinding.ActivityMainBinding
+import com.android.mobileweatherapp.viewmodels.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

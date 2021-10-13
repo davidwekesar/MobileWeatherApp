@@ -1,37 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingStart="@dimen/default_padding_medium"
-    android:paddingTop="@dimen/default_padding_small"
-    android:paddingEnd="@dimen/default_padding_medium"
-    android:paddingBottom="@dimen/default_padding_small"
-    tools:background="@color/sunny">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="0dp"
+    <data>
+        <variable
+            name="dayForecast"
+            type="com.android.mobileweatherapp.data.network.DayForecast" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        android:textColor="@color/white"
-        tools:text="Tuesday" />
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/default_padding_medium"
+        android:paddingTop="@dimen/default_padding_small"
+        android:paddingEnd="@dimen/default_padding_medium"
+        android:paddingBottom="@dimen/default_padding_small"
+        tools:background="@color/sunny">
 
-    <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_gravity="center_vertical"
-        android:contentDescription="@string/content_desc_weather_icon"
-        android:scaleType="fitXY"
-        android:src="@drawable/clear" />
+        <TextView
+            android:id="@+id/textDayOfWeek"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@{String.valueOf(dayForecast.time)}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:textColor="@color/white"
+            tools:text="Tuesday" />
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="end"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        android:textColor="@color/white"
-        tools:text="20" />
-</LinearLayout>
+        <ImageView
+            android:id="@+id/weatherIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/content_desc_weather_icon"
+            android:scaleType="fitXY"
+            android:src="@drawable/clear" />
+
+        <TextView
+            android:id="@+id/textTemp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="@{dayForecast.temperatures.currentTemp}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:textColor="@color/white"
+            tools:text="20" />
+    </LinearLayout>
+</layout>

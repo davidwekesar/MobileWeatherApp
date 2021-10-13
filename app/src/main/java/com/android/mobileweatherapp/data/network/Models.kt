@@ -12,6 +12,18 @@ data class CityWeather(
     val cityName: String
 )
 
+data class Forecast(val list: List<DayForecast>)
+
+data class DayForecast(
+    @Json(name = "dt")
+    val time: Long,
+
+    @Json(name = "main")
+    val temperatures: Temperatures,
+
+    val weather: List<Weather>
+)
+
 data class Temperatures(
     @Json(name = "temp")
     val currentTemp: Double,

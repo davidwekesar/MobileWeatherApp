@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.android.mobileweatherapp.WeatherViewModel" />
+            type="com.android.mobileweatherapp.viewmodels.WeatherViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".MainActivity">
+        tools:context=".ui.MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -73,7 +73,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainer"
-            android:name="com.android.mobileweatherapp.WeatherFragment"
+            android:name="com.android.mobileweatherapp.ui.WeatherFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />

@@ -10,4 +10,6 @@ class WeatherRepository {
 
     suspend fun getCurrentWeather() =
         openWeatherMapService.getCurrentWeatherData()
+
+    suspend fun getWeatherForecast() = openWeatherMapService.getWeatherForecast()
 }

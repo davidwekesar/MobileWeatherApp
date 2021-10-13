@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.android.mobileweatherapp.WeatherViewModel" />
+            type="com.android.mobileweatherapp.viewmodels.WeatherViewModel" />
     </data>
 
     <LinearLayout
@@ -103,6 +103,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="vertical"
+            app:addList="@{viewModel.weatherForecast.list}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/list_item_day_forecast" />
     </LinearLayout>

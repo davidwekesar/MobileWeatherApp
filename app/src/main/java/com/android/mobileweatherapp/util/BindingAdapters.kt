@@ -5,7 +5,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.android.mobileweatherapp.R
+import com.android.mobileweatherapp.data.network.DayForecast
+import com.android.mobileweatherapp.ui.adapters.ForecastAdapter
 import kotlin.math.floor
 
 @BindingAdapter("android:text")
@@ -41,6 +44,14 @@ fun setDrawable(imageView: ImageView, weatherId: Int) {
         else -> R.drawable.forest_sunny
     }
     imageView.setImageResource(drawable)
+}
+
+@BindingAdapter("addList")
+fun bindRecyclerview(recyclerView: RecyclerView, list: List<DayForecast>?) {
+    list?.let {
+        val forecastAdapter = ForecastAdapter(list)
+        recyclerView.adapter = forecastAdapter
+    }
 }
 
 fun tempToInt(temp: Double?): Int {
