@@ -7,4 +7,6 @@
     <string name="max">max</string>
     <string name="temp_format">%1$s\u00B0</string>
     <string name="temp_placeholder">25\u00B0</string>
+    <string name="permission_rationale_title">Location Permission Required</string>
+    <string name="permission_rationale_message">Location permission is required to get accurate location-based Weather data</string>
 </resources>

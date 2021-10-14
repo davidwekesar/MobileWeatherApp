@@ -73,4 +73,7 @@ dependencies {
     /* Testing Libraries */
     // Hamcrest
     testImplementation "org.hamcrest:hamcrest:$hamcrest_version"
+
+    // Google play services - location
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
 }

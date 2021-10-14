@@ -8,5 +8,6 @@ class WeatherRepository {
 
     private val openWeatherMapService = OpenWeatherMap.openWeatherMapService
 
-    suspend fun getWeatherData() = openWeatherMapService.getWeatherData()
+    suspend fun getWeatherData(latitude: Double, longitude: Double) =
+        openWeatherMapService.getWeatherData(latitude, longitude)
 }
