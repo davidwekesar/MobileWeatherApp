@@ -69,4 +69,8 @@ dependencies {
 
     // Fragment KTX
     implementation "androidx.fragment:fragment-ktx:$fragment_ktx_version"
+
+    /* Testing Libraries */
+    // Hamcrest
+    testImplementation "org.hamcrest:hamcrest:$hamcrest_version"
 }

@@ -9,11 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.mobileweatherapp.R
 import com.android.mobileweatherapp.data.network.DailyForecast
 import com.android.mobileweatherapp.ui.adapters.ForecastAdapter
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.math.floor
-
-enum class WeatherCondition { RAINY, CLOUDY, SUNNY }
 
 @BindingAdapter("android:text")
 fun setText(text: TextView, temp: Double) {
@@ -68,50 +63,5 @@ fun setWeatherIcon(imageView: ImageView, weatherId: Int) {
 
 @BindingAdapter("android:text")
 fun setDayOfWeek(textView: TextView, time: Long) {
-    val sdf = SimpleDateFormat("EEEE", Locale.getDefault())
-    val date = Date(time * 1000)
-    textView.text = sdf.format(date)
-}
-
-fun tempToInt(temp: Double?): Int {
-    return if (temp != null) {
-        floor(temp).toInt()
-    } else {
-        0
-    }
-}
-
-fun getWeatherName(weatherId: Int?): String {
-    return if (weatherId != null) {
-        when (getWeatherCondition(weatherId)) {
-            WeatherCondition.RAINY -> {
-                "Rainy"
-            }
-            WeatherCondition.CLOUDY -> {
-                "Cloudy"
-            }
-            WeatherCondition.SUNNY -> {
-                "Sunny"
-            }
-        }
-    } else {
-        ""
-    }
-}
-
-fun getWeatherCondition(weatherId: Int): WeatherCondition {
-    return when (weatherId) {
-        in 200..622 -> {
-            WeatherCondition.RAINY
-        }
-        in 701..781 -> {
-            WeatherCondition.CLOUDY
-        }
-        in 801..804 -> {
-            WeatherCondition.CLOUDY
-        }
-        else -> {
-            WeatherCondition.SUNNY
-        }
-    }
+    textView.text = convertUnixTimeToDay(time)
 }
