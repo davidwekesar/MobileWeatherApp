@@ -19,27 +19,27 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/default_padding_small"
+            android:paddingBottom="@dimen/default_padding_small">
 
             <TextView
                 android:id="@+id/minTemp"
+                style="@style/TextBody"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_padding_medium"
+                android:layout_marginStart="24dp"
                 android:text="@{viewModel.cityWeather.dailyForecast[0].temperatures.minTemp}"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-                android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="19" />
 
             <TextView
                 android:id="@+id/textView"
+                style="@style/TextBody"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/min"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="@+id/minTemp"
                 app:layout_constraintStart_toStartOf="@+id/minTemp"
                 app:layout_constraintTop_toBottomOf="@+id/minTemp"
@@ -47,11 +47,10 @@
 
             <TextView
                 android:id="@+id/currentTemp"
+                style="@style/TextBody"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.cityWeather.currentWeather.currentTemp}"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-                android:textColor="@color/white"
                 app:layout_constraintEnd_toStartOf="@+id/maxTemp"
                 app:layout_constraintStart_toEndOf="@+id/minTemp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -59,11 +58,10 @@
 
             <TextView
                 android:id="@+id/textView2"
+                style="@style/TextBody"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/current"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="@+id/currentTemp"
                 app:layout_constraintStart_toStartOf="@+id/currentTemp"
                 app:layout_constraintTop_toBottomOf="@+id/currentTemp"
@@ -71,22 +69,20 @@
 
             <TextView
                 android:id="@+id/maxTemp"
+                style="@style/TextBody"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/default_padding_medium"
+                android:layout_marginEnd="24dp"
                 android:text="@{viewModel.cityWeather.dailyForecast[0].temperatures.maxTemp}"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="27" />
 
             <TextView
+                style="@style/TextBody"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/max"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="@+id/maxTemp"
                 app:layout_constraintStart_toStartOf="@+id/maxTemp"
                 app:layout_constraintTop_toBottomOf="@+id/maxTemp"

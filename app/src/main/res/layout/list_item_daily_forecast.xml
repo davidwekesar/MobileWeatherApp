@@ -26,8 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@{dailyForecast.time}"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:textColor="@color/white"
+            style="@style/TextBody"
             tools:text="Tuesday" />
 
         <ImageView
@@ -48,8 +47,7 @@
             android:layout_weight="1"
             android:gravity="end"
             android:text="@{dailyForecast.temperatures.dayTemp}"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:textColor="@color/white"
+            style="@style/TextBody"
             tools:text="20" />
     </LinearLayout>
 </layout>

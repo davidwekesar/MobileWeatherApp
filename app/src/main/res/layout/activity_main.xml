@@ -48,23 +48,21 @@
 
                 <TextView
                     android:id="@+id/mainTemp"
+                    style="@style/TextHeaderTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/toolbar"
                     android:layout_centerHorizontal="true"
                     android:text="@{viewModel.cityWeather.currentWeather.currentTemp}"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"
-                    android:textColor="@color/white"
                     tools:text="@string/temp_placeholder" />
 
                 <TextView
+                    style="@style/TextHeaderWeatherType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/mainTemp"
                     android:layout_centerHorizontal="true"
                     android:textAllCaps="true"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-                    android:textColor="@color/white"
                     app:textWeather="@{viewModel.cityWeather.currentWeather.weather[0].id}"
                     tools:text="Sunny" />
             </RelativeLayout>
