@@ -8,8 +8,5 @@ class WeatherRepository {
 
     private val openWeatherMapService = OpenWeatherMap.openWeatherMapService
 
-    suspend fun getCurrentWeather() =
-        openWeatherMapService.getCurrentWeatherData()
-
-    suspend fun getWeatherForecast() = openWeatherMapService.getWeatherForecast()
+    suspend fun getWeatherData() = openWeatherMapService.getWeatherData()
 }

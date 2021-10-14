@@ -3,17 +3,15 @@ package com.android.mobileweatherapp.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.android.mobileweatherapp.data.network.DayForecast
-import com.android.mobileweatherapp.databinding.ListItemDayForecastBinding
-import java.text.SimpleDateFormat
-import java.util.*
+import com.android.mobileweatherapp.data.network.DailyForecast
+import com.android.mobileweatherapp.databinding.ListItemDailyForecastBinding
 
 class ForecastAdapter(
-    private val forecastList: List<DayForecast>
+    private val forecastList: List<DailyForecast>
 ) : RecyclerView.Adapter<DayForecastViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DayForecastViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ListItemDayForecastBinding.inflate(layoutInflater, parent, false)
+        val binding = ListItemDailyForecastBinding.inflate(layoutInflater, parent, false)
         return DayForecastViewHolder(binding)
     }
 
@@ -26,17 +24,11 @@ class ForecastAdapter(
 }
 
 class DayForecastViewHolder(
-    private var binding: ListItemDayForecastBinding
+    private var binding: ListItemDailyForecastBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(dayForecast: DayForecast) {
-        binding.dayForecast = dayForecast
+    fun bind(dailyForecast: DailyForecast) {
+        binding.dailyForecast = dailyForecast
         binding.executePendingBindings()
     }
-}
-
-fun getDayName(time: Long): String {
-    val sdf = SimpleDateFormat("E", Locale.getDefault())
-    val date = Date(time * 1000)
-    return sdf.format(date)
 }

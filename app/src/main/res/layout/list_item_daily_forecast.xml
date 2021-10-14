@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-            name="dayForecast"
-            type="com.android.mobileweatherapp.data.network.DayForecast" />
+            name="dailyForecast"
+            type="com.android.mobileweatherapp.data.network.DailyForecast" />
     </data>
 
     <LinearLayout
@@ -23,7 +25,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@{String.valueOf(dayForecast.time)}"
+            android:text="@{dailyForecast.time}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:textColor="@color/white"
             tools:text="Tuesday" />
@@ -35,7 +37,9 @@
             android:layout_gravity="center_vertical"
             android:contentDescription="@string/content_desc_weather_icon"
             android:scaleType="fitXY"
-            android:src="@drawable/clear" />
+            android:src="@drawable/clear"
+            app:tint="@color/white"
+            app:weatherIcon="@{dailyForecast.weather[0].id}" />
 
         <TextView
             android:id="@+id/textTemp"
@@ -43,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:text="@{dayForecast.temperatures.currentTemp}"
+            android:text="@{dailyForecast.temperatures.dayTemp}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:textColor="@color/white"
             tools:text="20" />

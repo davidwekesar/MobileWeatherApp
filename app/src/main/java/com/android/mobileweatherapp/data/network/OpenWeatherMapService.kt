@@ -18,11 +18,8 @@ private val retrofit = Retrofit.Builder()
 
 interface OpenWeatherMapService {
 
-    @GET("data/2.5/weather?appid=${BuildConfig.apiKey}&q=Nairobi&units=metric")
-    suspend fun getCurrentWeatherData(): CityWeather
-
-    @GET("data/2.5/forecast?appid=${BuildConfig.apiKey}&q=Nairobi&units=metric")
-    suspend fun getWeatherForecast(): Forecast
+    @GET("data/2.5/onecall?appid=${BuildConfig.apiKey}&lat=1.29&lon=36.82&exclude=minutely,hourly,alerts&units=metric")
+    suspend fun getWeatherData(): CityWeather
 }
 
 object OpenWeatherMap {

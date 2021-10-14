@@ -46,4 +46,13 @@ class BindingAdaptersKtTest {
 
         assertEquals("", weatherName)
     }
+
+    @Test
+    fun getWeatherCondition_Int_ReturnsWeatherCondition() {
+        val weatherId = 500
+
+        val weatherCondition = getWeatherCondition(weatherId)
+
+        assertEquals(WeatherCondition.RAINY, weatherCondition)
+    }
 }

@@ -7,9 +7,13 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.android.mobileweatherapp.R
-import com.android.mobileweatherapp.data.network.DayForecast
+import com.android.mobileweatherapp.data.network.DailyForecast
 import com.android.mobileweatherapp.ui.adapters.ForecastAdapter
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.math.floor
+
+enum class WeatherCondition { RAINY, CLOUDY, SUNNY }
 
 @BindingAdapter("android:text")
 fun setText(text: TextView, temp: Double) {
@@ -26,32 +30,47 @@ fun setWeatherName(textView: TextView, weatherId: Int) {
 
 @BindingAdapter("android:background")
 fun setBackgroundColor(view: View, weatherId: Int) {
-    val color = when(weatherId) {
-        in 200..531 -> R.color.rainy
-        in 801..804 -> R.color.cloudy
-        800 -> R.color.sunny
-        else -> R.color.sunny
+    val color = when (getWeatherCondition(weatherId)) {
+        WeatherCondition.RAINY -> R.color.rainy
+        WeatherCondition.CLOUDY -> R.color.cloudy
+        WeatherCondition.SUNNY -> R.color.sunny
     }
     view.background = ContextCompat.getDrawable(view.rootView.context, color)
 }
 
 @BindingAdapter("android:src")
 fun setDrawable(imageView: ImageView, weatherId: Int) {
-    val drawable = when(weatherId) {
-        in 200..531 -> R.drawable.forest_rainy
-        in 801..804 -> R.drawable.forest_cloudy
-        800 -> R.drawable.forest_sunny
-        else -> R.drawable.forest_sunny
+    val drawable = when (getWeatherCondition(weatherId)) {
+        WeatherCondition.RAINY -> R.drawable.forest_rainy
+        WeatherCondition.CLOUDY -> R.drawable.forest_cloudy
+        WeatherCondition.SUNNY -> R.drawable.forest_sunny
     }
     imageView.setImageResource(drawable)
 }
 
 @BindingAdapter("addList")
-fun bindRecyclerview(recyclerView: RecyclerView, list: List<DayForecast>?) {
+fun bindRecyclerview(recyclerView: RecyclerView, list: List<DailyForecast>?) {
     list?.let {
         val forecastAdapter = ForecastAdapter(list)
         recyclerView.adapter = forecastAdapter
     }
+}
+
+@BindingAdapter("weatherIcon")
+fun setWeatherIcon(imageView: ImageView, weatherId: Int) {
+    val weatherIcon = when (getWeatherCondition(weatherId)) {
+        WeatherCondition.RAINY -> R.drawable.rain
+        WeatherCondition.CLOUDY -> R.drawable.partlysunny
+        WeatherCondition.SUNNY -> R.drawable.clear
+    }
+    imageView.setImageResource(weatherIcon)
+}
+
+@BindingAdapter("android:text")
+fun setDayOfWeek(textView: TextView, time: Long) {
+    val sdf = SimpleDateFormat("EEEE", Locale.getDefault())
+    val date = Date(time * 1000)
+    textView.text = sdf.format(date)
 }
 
 fun tempToInt(temp: Double?): Int {
@@ -64,21 +83,35 @@ fun tempToInt(temp: Double?): Int {
 
 fun getWeatherName(weatherId: Int?): String {
     return if (weatherId != null) {
-        when (weatherId) {
-            in 200..531 -> {
-                "Rain"
+        when (getWeatherCondition(weatherId)) {
+            WeatherCondition.RAINY -> {
+                "Rainy"
             }
-            in 801..804 -> {
+            WeatherCondition.CLOUDY -> {
                 "Cloudy"
             }
-            800 -> {
+            WeatherCondition.SUNNY -> {
                 "Sunny"
-            }
-            else -> {
-                ""
             }
         }
     } else {
         ""
+    }
+}
+
+fun getWeatherCondition(weatherId: Int): WeatherCondition {
+    return when (weatherId) {
+        in 200..622 -> {
+            WeatherCondition.RAINY
+        }
+        in 701..781 -> {
+            WeatherCondition.CLOUDY
+        }
+        in 801..804 -> {
+            WeatherCondition.CLOUDY
+        }
+        else -> {
+            WeatherCondition.SUNNY
+        }
     }
 }
