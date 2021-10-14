@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.mobileweatherapp.R
 import com.android.mobileweatherapp.data.network.DailyForecast
 import com.android.mobileweatherapp.ui.adapters.ForecastAdapter
+import com.android.mobileweatherapp.viewmodels.OpenWeatherApiStatus
 
 @BindingAdapter("android:text")
 fun setText(text: TextView, temp: Double) {
@@ -64,4 +65,21 @@ fun setWeatherIcon(imageView: ImageView, weatherId: Int) {
 @BindingAdapter("android:text")
 fun setDayOfWeek(textView: TextView, time: Long) {
     textView.text = convertUnixTimeToDay(time)
+}
+
+@BindingAdapter("android:visibility")
+fun setErrorVisibility(view: View, openWeatherApiStatus: OpenWeatherApiStatus?) {
+    openWeatherApiStatus?.let {
+        when (openWeatherApiStatus) {
+            OpenWeatherApiStatus.LOADING -> {
+                view.visibility = View.INVISIBLE
+            }
+            OpenWeatherApiStatus.DONE -> {
+                view.visibility = View.INVISIBLE
+            }
+            OpenWeatherApiStatus.ERROR -> {
+                view.visibility = View.VISIBLE
+            }
+        }
+    }
 }

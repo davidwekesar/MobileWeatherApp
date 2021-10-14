@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import com.android.mobileweatherapp.R
 import com.android.mobileweatherapp.databinding.ActivityMainBinding
 import com.android.mobileweatherapp.viewmodels.Coordinates
+import com.android.mobileweatherapp.viewmodels.OpenWeatherApiStatus
 import com.android.mobileweatherapp.viewmodels.WeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private val progressDialog = CustomProgressDialog()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -46,6 +49,8 @@ class MainActivity : AppCompatActivity() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
         checkLocationPermission()
+
+        openWeatherApiObserver()
     }
 
     private fun checkLocationPermission() {
@@ -68,6 +73,24 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }
+    }
+
+    private fun openWeatherApiObserver() {
+        weatherViewModel.openWeatherApiStatus.observe(this, { openWeatherApiStatus ->
+            openWeatherApiStatus?.let {
+                when (openWeatherApiStatus) {
+                    OpenWeatherApiStatus.LOADING -> {
+                        progressDialog.show(this, "Please wait...")
+                    }
+                    OpenWeatherApiStatus.DONE -> {
+                        progressDialog.dialog.dismiss()
+                    }
+                    OpenWeatherApiStatus.ERROR -> {
+                        progressDialog.dialog.dismiss()
+                    }
+                }
+            }
+        })
     }
 
     private fun displayPermissionDialog() {

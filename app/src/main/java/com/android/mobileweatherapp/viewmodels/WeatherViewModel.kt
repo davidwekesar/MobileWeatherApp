@@ -16,14 +16,20 @@ class WeatherViewModel @Inject constructor(
     private val _cityWeather = MutableLiveData<CityWeather>()
     val cityWeather: LiveData<CityWeather> get() = _cityWeather
 
+    private val _openWeatherApiStatus = MutableLiveData<OpenWeatherApiStatus>()
+    val openWeatherApiStatus: LiveData<OpenWeatherApiStatus> get() = _openWeatherApiStatus
+
     fun getWeatherData(coordinates: Coordinates) {
         viewModelScope.launch {
             try {
+                _openWeatherApiStatus.value = OpenWeatherApiStatus.LOADING
                 val latitude = coordinates.latitude
                 val longitude = coordinates.longitude
                 _cityWeather.value = weatherRepository.getWeatherData(latitude, longitude)
                 Timber.i("Latitude: $latitude, Longitude: $longitude")
+                _openWeatherApiStatus.value = OpenWeatherApiStatus.DONE
             } catch (e: Exception) {
+                _openWeatherApiStatus.value = OpenWeatherApiStatus.ERROR
                 Timber.e("Failure: ${e.message}")
             }
         }
@@ -31,3 +37,5 @@ class WeatherViewModel @Inject constructor(
 }
 
 data class Coordinates(val latitude: Double, val longitude: Double)
+
+enum class OpenWeatherApiStatus { LOADING, DONE, ERROR }
